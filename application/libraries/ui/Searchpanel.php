@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-require(APPPATH.'libraries/ui/Formpanel.php'); // contains some logic applicable only to `admin` controllers
+require_once(APPPATH.'libraries/ui/Formpanel.php'); // contains some logic applicable only to `admin` controllers
 
 class Searchpanel extends Formpanel { 
 	

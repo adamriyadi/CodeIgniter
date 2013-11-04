@@ -1,36 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Button { 
+require_once(APPPATH.'libraries/form/Forminput.php'); // contains some logic applicable only to `admin` controllers
+
+class Button extends Forminput {
 
 	private $className = "btn-default";
-	private $label = "";
-	private $id = "";
-	private $name = "";
 	private $icon = "";
-	private $value = "";
-	private $enabled = true;
-	private $events = array();
-
-	protected $CI = null;
-	protected $__string = '';
 
 	public function __construct($id="",$name="",$label="",$value="",$className = "btn-default") {
-        $this->CI = & get_instance();
-		
-		$this->id = $id;
-		$this->name = $name;
-		if ($this->name == "") {
-			$this->name = $id;
-		}
-		$this->label = $label;
-		$this->value = $value;
-		$this->className = $className;
-	}
-
-	public function setValue($value = '') {
-		$this->value = $value;
-
-		return $this;
+        parent::__construct($id,$name,$value,$label,$required);
 	}
 
 	public function setIcon($icon = '') {
@@ -38,39 +16,9 @@ class Button {
 
 		return $this;
 	}
-
-	public function setEnabled($enabled = true) {
-		$this->enabled = $enabled;
-
-		return $this;
-	}
-
-	public function setLabel($label) {
-		$this->label = $label;
-
-		return $this;
-	}
-	
-	public function setId($id = "") {
-		$this->id = $id;
-
-		return $this;
-	}
-	
-	public function setName($name = "") {
-		$this->name = $name;
-
-		return $this;
-	}
 	
 	public function setClassName($className) {
 		$this->className = $className;
-
-		return $this;
-	}
-	
-	public function addEvent($event, $action) {
-		$this->events[$event] = $action;
 
 		return $this;
 	}
@@ -104,17 +52,4 @@ class Button {
 
 		$this->__string = $button;
 	}
-	
-	public function render(){
-		$this->generate();
-
-		echo $this->__string;
-	}
-
-	public function toString(){
-		$this->generate();
-
-		return $this->__string;
-	}
-
 }

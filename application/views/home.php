@@ -3,6 +3,35 @@
     <div class="section">
 
       <div class="container">
+        <div class="row">
+			<?$hiddenfield->render();?>
+
+			<div class="col-lg-6">
+				<?$textfield->render();?>
+			</div>
+			<div class="col-lg-6">
+				<?$datepicker->render();?>
+			</div>
+			<div class="col-lg-6">
+				<?$ckeditor->render();?>
+			</div>
+			<div class="col-lg-6">
+				<?$dialoginput->render();?>
+			</div>
+			<div class="col-lg-6">
+				<?$combobox->render();?>
+			</div>
+			<div class="col-lg-6">
+				<?$textarea->render();?>
+			</div>
+			<div class="col-lg-6">
+				<?$inputfile->render();?>
+			</div>
+			<div class="col-lg-6">
+				<?$dateinput->render();?>
+				<?$button->render();?>
+			</div>
+		</div>
 
         <div class="row">
 

@@ -1,70 +1,17 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ckeditor { 
+require_once(APPPATH.'libraries/form/Forminput.php'); // contains some logic applicable only to `admin` controllers
 
-	private $value = "";
-	private $required = false;
-	private $label = "";
-	private $id = "";
-	private $name = "";
-	private $enabled = true;
+class Ckeditor extends Forminput { 
+
 	private $height = 400;
-	private $events = array();
-
-	protected $CI = null;
-	protected $__string = '';
 
 	public function __construct($id="",$name="",$value="",$label="",$required=false) {
-        $this->CI = & get_instance();
-
-		$this->id = $id;
-		$this->name = $name;
-		if ($this->name == "") {
-			$this->name = $id;
-		}
-		$this->value = $value;
-		$this->label = $label;
-		$this->required = $required;
-	}
-
-	public function setEnabled($enabled = true) {
-		$this->enabled = $enabled;
-
-		return $this;
+		parent::__construct($id,$name,$value,$label,$required);
 	}
 
 	public function setHeight($height) {
 		$this->height = $height;
-
-		return $this;
-	}
-
-	public function setLabel($label) {
-		$this->label = $label;
-
-		return $this;
-	}
-
-	public function setValue($value) {
-		$this->value = $value;
-
-		return $this;
-	}
-	
-	public function setId($id = "") {
-		$this->id = $id;
-
-		return $this;
-	}
-	
-	public function setName($name = "") {
-		$this->name = $name;
-
-		return $this;
-	}
-	
-	public function addEvent($event, $action) {
-		$this->events[$event] = $action;
 
 		return $this;
 	}
@@ -112,18 +59,6 @@ class Ckeditor {
 
 		$this->__string = $ckeditor;
 	}
-	
-	public function render(){
-		$this->generate();
-
-		echo $this->__string;
-	}
-
-	public function toString(){
-		$this->generate();
-
-		return $this->__string;
-	}
 
 	/**
 	 * config_data function.
@@ -135,7 +70,7 @@ class Ckeditor {
 	 * @param array $data. (default: array())
 	 * @return String
 	 */
-	protected function config_data($data = array())
+	private function config_data($data = array())
 	{
 		$return = '';
 		foreach ($data as $key)
@@ -163,7 +98,7 @@ class Ckeditor {
 	 * @param array $data (default: array())
 	 * @return string
 	 */
-	protected function display_ckeditor($data = array())
+	private function display_ckeditor($data = array())
 	{
 		// Initialization
 		$return = $this->cke_initialize($data);
@@ -219,7 +154,7 @@ class Ckeditor {
 	 * @param array $data (default: array())
 	 * @return string
 	 */
-	protected function cke_create_instance($data = array()) {
+	private function cke_create_instance($data = array()) {
 		
 		$return = "<script type=\"text/javascript\">
 			CKEDITOR.replace('" . $data['id'] . "', {";
@@ -258,7 +193,7 @@ class Ckeditor {
 	 * @param array $data (default: array())
 	 * @return string
 	 */
-	protected function cke_initialize($data = array()) {
+	private function cke_initialize($data = array()) {
 		
 		$return = '';
 		if (sizeof($data) <= 0 || $data['path'] == '') {
